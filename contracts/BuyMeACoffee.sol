@@ -74,6 +74,8 @@ contract BuyMeACoffee {
      * @dev update contract balance withdrawal address
      */
     function updateWithdrawalAddress(address payable _newAddress) public {
+        // only the current owner can change the withdrawal address
+        require(msg.sender == owner);
         owner = _newAddress;
     }
 }
