@@ -12,7 +12,7 @@ async function getBalance(address) {
 async function printBalances(addresses) {
 	let idx = 0;
 	for (const address of addresses) {
-		console.log(`Address ${idx} balance: `, await getBalance(address));
+		console.log(`Address #${idx}\tBalance: `, await getBalance(address));
 		idx++;
 	}
 }
@@ -44,7 +44,7 @@ async function main() {
 
 	// Check balances before the coffee purchase.
 	const addresses = [owner.address, tipper.address, buyMeACoffee.address];
-	console.log("== start ==");
+	console.log("== START ==");
 	await printBalances(addresses);
 
 	// Buy the owner a few coffees.
@@ -60,18 +60,18 @@ async function main() {
 		.buyCoffee("Kay", "I love my Proof of Knowledge", tip);
 
 	// Check balances after the coffee purchase.
-	console.log("== bought coffee ==");
+	console.log("== BOUGHT COFEEE  ==");
 	await printBalances(addresses);
 
 	// Withdraw.
 	await buyMeACoffee.connect(owner).withdrawTips();
 
 	// Check balances after withdrawal.
-	console.log("== withdrawTips ==");
+	console.log("== WITHDRAW TIPS ==");
 	await printBalances(addresses);
 
 	// Check out the memos.
-	console.log("== memos ==");
+	console.log("== MEMOS ==");
 	const memos = await buyMeACoffee.getMemos();
 	printMemos(memos);
 }

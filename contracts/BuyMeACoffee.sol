@@ -68,4 +68,12 @@ contract BuyMeACoffee {
     function withdrawTips() public {
         require(owner.send(address(this).balance));
     }
+
+    /**
+     * @param _newAddress address of the new owner
+     * @dev update contract balance withdrawal address
+     */
+    function updateWithdrawalAddress(address payable _newAddress) public {
+        owner = _newAddress;
+    }
 }
